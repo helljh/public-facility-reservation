@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: publicfacility
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}

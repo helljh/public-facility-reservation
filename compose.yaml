@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: public-facility-postgres
+    environment:
+      POSTGRES_DB: public_facility
+      POSTGRES_USER: public_user
+      POSTGRES_PASSWORD: public_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
