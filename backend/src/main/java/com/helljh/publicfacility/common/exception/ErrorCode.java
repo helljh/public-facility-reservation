@@ -64,7 +64,19 @@ public enum ErrorCode {
             HttpStatus.NOT_FOUND,
             "ROOM_001",
             "회의실을 찾을 수 없습니다."
-    );
+    ),
+
+    INVALID_RESERVATION_DATE(
+            HttpStatus.BAD_REQUEST,
+        "RESERVATION_001",
+                "예약 가능한 날짜가 아닙니다."
+    ),
+
+    FACILITY_CLOSED(
+            HttpStatus.CONFLICT,
+        "FACILITY_002",
+                "해당 날짜는 시설 휴무일입니다."
+    );;
 
     private final HttpStatus status;
     private final String code;

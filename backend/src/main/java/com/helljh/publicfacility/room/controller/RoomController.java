@@ -1,14 +1,13 @@
 package com.helljh.publicfacility.room.controller;
 
+import com.helljh.publicfacility.room.dto.RoomAvailabilityResponse;
 import com.helljh.publicfacility.room.dto.RoomDetailResponse;
 import com.helljh.publicfacility.room.dto.RoomResponse;
 import com.helljh.publicfacility.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,5 +27,17 @@ public class RoomController {
             @PathVariable Long roomId
     ) {
         return roomService.getRoom(roomId);
+    }
+
+    @GetMapping("/{roomId}/availability")
+    public RoomAvailabilityResponse getAvailability(
+            @PathVariable Long roomId,
+            @RequestParam LocalDate date
+    ) {
+
+        return roomService.getAvailability(
+                roomId,
+                date
+        );
     }
 }
