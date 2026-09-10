@@ -110,9 +110,9 @@ public class Reservation {
         return reservation;
     }
 
-    public void cancel() {
+    public void cancel(LocalDateTime canceledAt) {
         this.status = ReservationStatus.CANCELED;
-        this.canceledAt = LocalDateTime.now();
+        this.canceledAt = canceledAt;
     }
 
     public void complete() {

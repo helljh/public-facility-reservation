@@ -45,6 +45,8 @@ public class ReservationService {
     private final RoomOperationHoursRepository roomOperationHoursRepository;
     private final RoomReservationMethodRepository roomReservationMethodRepository;
 
+    private final Clock clock;
+
     @Transactional
     public ReservationCreateResponse createReservation(
             Long userId,
@@ -250,7 +252,7 @@ public class ReservationService {
         LocalDateTime cancelDeadline =
                 reservationStart.minusHours(1);
 
-        if (LocalDateTime.now()
+        if (LocalDateTime.now(clock)
                 .isAfter(cancelDeadline)) {
 
             throw new BusinessException(
@@ -258,7 +260,9 @@ public class ReservationService {
             );
         }
 
-        reservation.cancel();
+        reservation.cancel(
+                LocalDateTime.now(clock)
+        );
 
         return ReservationCancelResponse.from(
                 reservation
@@ -268,7 +272,7 @@ public class ReservationService {
     @Transactional
     public void completeExpiredReservations() {
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(clock);
 
         List<Reservation> reservations =
                 reservationRepository.findExpiredReservations(
@@ -334,7 +338,7 @@ public class ReservationService {
                     );
 
             if (reservationStart.isBefore(
-                    LocalDateTime.now().plusMinutes(30)
+                    LocalDateTime.now(clock).plusMinutes(30)
             )) {
                 throw new BusinessException(
                         ErrorCode.INVALID_RESERVATION_TIME
@@ -385,7 +389,7 @@ public class ReservationService {
         LocalDateTime cancelDeadline =
                 reservationStart.minusHours(1);
 
-        return !LocalDateTime.now()
+        return !LocalDateTime.now(clock)
                 .isAfter(cancelDeadline);
     }
 
