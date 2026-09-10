@@ -58,7 +58,13 @@ public enum ErrorCode {
             HttpStatus.NOT_FOUND,
         "FACILITY_001",
                 "시설을 찾을 수 없습니다."
-    ),;
+    ),
+
+    ROOM_NOT_FOUND(
+            HttpStatus.NOT_FOUND,
+            "ROOM_001",
+            "회의실을 찾을 수 없습니다."
+    );
 
     private final HttpStatus status;
     private final String code;
