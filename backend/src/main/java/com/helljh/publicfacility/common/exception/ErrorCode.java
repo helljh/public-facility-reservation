@@ -52,7 +52,13 @@ public enum ErrorCode {
             HttpStatus.FORBIDDEN,
             "AUTH_005",
             "접근 권한이 없습니다."
-    );
+    ),
+
+    FACILITY_NOT_FOUND(
+            HttpStatus.NOT_FOUND,
+        "FACILITY_001",
+                "시설을 찾을 수 없습니다."
+    ),;
 
     private final HttpStatus status;
     private final String code;
