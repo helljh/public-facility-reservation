@@ -109,4 +109,13 @@ public class Reservation {
 
         return reservation;
     }
+
+    public void cancel() {
+        this.status = ReservationStatus.CANCELED;
+        this.canceledAt = LocalDateTime.now();
+    }
+
+    public void complete() {
+        this.status = ReservationStatus.COMPLETED;
+    }
 }
