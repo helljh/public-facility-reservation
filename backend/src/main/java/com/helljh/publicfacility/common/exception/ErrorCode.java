@@ -40,6 +40,18 @@ public enum ErrorCode {
             HttpStatus.UNAUTHORIZED,
             "AUTH_003",
             "만료된 Refresh Token입니다."
+    ),
+
+    UNAUTHORIZED(
+            HttpStatus.UNAUTHORIZED,
+            "AUTH_004",
+            "인증이 필요합니다."
+    ),
+
+    ACCESS_DENIED(
+            HttpStatus.FORBIDDEN,
+            "AUTH_005",
+            "접근 권한이 없습니다."
     );
 
     private final HttpStatus status;
