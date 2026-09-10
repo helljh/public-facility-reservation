@@ -76,7 +76,25 @@ public enum ErrorCode {
             HttpStatus.CONFLICT,
         "FACILITY_002",
                 "해당 날짜는 시설 휴무일입니다."
-    );;
+    ),
+
+    INVALID_RESERVATION_TIME(
+            HttpStatus.BAD_REQUEST,
+            "RESERVATION_002",
+            "예약 시간이 올바르지 않습니다."
+    ),
+
+    RESERVATION_TIME_CONFLICT(
+            HttpStatus.CONFLICT,
+            "RESERVATION_003",
+            "이미 예약된 시간입니다."
+    ),
+
+    EXCEED_ROOM_CAPACITY(
+            HttpStatus.BAD_REQUEST,
+            "RESERVATION_004",
+            "회의실 수용 인원을 초과했습니다."
+    );
 
     private final HttpStatus status;
     private final String code;

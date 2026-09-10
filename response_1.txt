@@ -1,0 +1,1 @@
+{"reservationId":36,"reservationNumber":"RSV-0A1D8B53","roomId":1,"roomName":"회의실 A","facilityName":"서울시청 시민회의실","reservationDate":"2026-09-20","startTime":"14:00","endTime":"16:00","peopleCount":4,"status":"RESERVED"}

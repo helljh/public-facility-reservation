@@ -86,4 +86,27 @@ public class Reservation {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    public static Reservation create(
+            String reservationNumber,
+            User user,
+            Room room,
+            LocalDate reservationDate,
+            LocalTime startTime,
+            LocalTime endTime,
+            Integer peopleCount
+    ) {
+        Reservation reservation = new Reservation();
+
+        reservation.reservationNumber = reservationNumber;
+        reservation.user = user;
+        reservation.room = room;
+        reservation.reservationDate = reservationDate;
+        reservation.startTime = startTime;
+        reservation.endTime = endTime;
+        reservation.peopleCount = peopleCount;
+        reservation.status = ReservationStatus.RESERVED;
+
+        return reservation;
+    }
 }
