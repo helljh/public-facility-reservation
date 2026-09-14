@@ -4,9 +4,11 @@ spring:
     username: ${DB_USERNAME:public_user}
     password: ${DB_PASSWORD}
 
-  jpa:
-    hibernate:
-      ddl-auto: update
+  spring:
+    jpa:
+      hibernate:
+        ddl-auto: validate
+      open-in-view: false
     show-sql: true
     properties:
       hibernate:
