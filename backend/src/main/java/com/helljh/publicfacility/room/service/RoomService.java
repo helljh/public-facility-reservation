@@ -24,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -44,6 +45,7 @@ public class RoomService {
     private final RoomOperationHoursRepository roomOperationHoursRepository;
     private final ReservationRepository reservationRepository;
 
+    private final Clock clock;
 
     public List<RoomResponse> getRooms() {
 
@@ -202,7 +204,7 @@ public class RoomService {
 
     private void validateReservationDate(LocalDate date) {
 
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now(clock);
         LocalDate maxDate = today.plusDays(30);
 
         if (date.isBefore(today)
@@ -248,7 +250,7 @@ public class RoomService {
             boolean available = true;
 
             // 당일 예약은 시작시간 기준 30분 전에 마감
-            if (date.equals(LocalDate.now())) {
+            if (date.equals(LocalDate.now(clock))) {
 
                 LocalDateTime reservationStart =
                         LocalDateTime.of(
@@ -257,7 +259,7 @@ public class RoomService {
                         );
 
                 LocalDateTime minimumStart =
-                        LocalDateTime.now()
+                        LocalDateTime.now(clock)
                                 .plusMinutes(30);
 
                 if (reservationStart.isBefore(minimumStart)) {

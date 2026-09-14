@@ -261,6 +261,7 @@ public class ReservationService {
         }
 
         reservation.cancel(
+
                 LocalDateTime.now(clock)
         );
 
@@ -288,7 +289,7 @@ public class ReservationService {
 
     private void validateReservationDate(LocalDate date) {
 
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now(clock);
 
         if (date.isBefore(today)
                 || date.isAfter(today.plusDays(30))) {
@@ -329,7 +330,7 @@ public class ReservationService {
         }
 
         if (request.reservationDate()
-                .equals(LocalDate.now())) {
+                .equals(LocalDate.now(clock))) {
 
             LocalDateTime reservationStart =
                     LocalDateTime.of(
