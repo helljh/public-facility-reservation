@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+jwt:
+  secret: public-facility-reservation-jwt-secret-key-2026-test
+  access-expiration-minutes: 30
+  refresh-expiration-days: 14
